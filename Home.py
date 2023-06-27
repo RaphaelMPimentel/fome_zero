@@ -142,33 +142,33 @@ with st.container():
         culinarias = len(df1['cuisines'].unique())
         col5.metric('Types of Cuisine', culinarias)
         
-#with st.container():
-#    
-#    df_aux = (df2.loc[:, ['city','restaurant_name','latitude','longitude']].groupby(['city','restaurant_name']).median().reset_index())
-#
-#    # Calcular os limites do mapa
-#    min_lat = df2['latitude'].min()
-#    max_lat = df2['latitude'].max()
-#    min_lon = df2['longitude'].min()
-#    max_lon = df2['longitude'].max()
-#
-#    # Calcular o centro do mapa
-#    center_lat = (min_lat + max_lat) / 2
-#    center_lon = (min_lon + max_lon) / 2
-#
-#    # Criar o mapa
-#    m = folium.Map(location=[center_lat, center_lon], zoom_start=2)
-#
-#    # Adicionar marcadores em cluster
-#    marker_cluster = MarkerCluster().add_to(m)
-#
-#    fig = folium.Figure(width=1920, height=1080)
-#
-#
-#    for index, location_info in df2.iterrows():
-#
-#        folium.Marker(
-#            location=(location_info['latitude'], location_info['longitude']),
-#            icon=folium.Icon(color=location_info['rating_color'])).add_to(marker_cluster)
-#        
-#    folium_static(m,width=1024,height=600)
+with st.container():
+    
+    df_aux = (df2.loc[:, ['city','restaurant_name','latitude','longitude']].groupby(['city','restaurant_name']).median().reset_index())
+
+    # Calcular os limites do mapa
+    min_lat = df2['latitude'].min()
+    max_lat = df2['latitude'].max()
+    min_lon = df2['longitude'].min()
+    max_lon = df2['longitude'].max()
+
+    # Calcular o centro do mapa
+    center_lat = (min_lat + max_lat) / 2
+    center_lon = (min_lon + max_lon) / 2
+
+    # Criar o mapa
+    m = folium.Map(location=[center_lat, center_lon], zoom_start=2)
+
+    # Adicionar marcadores em cluster
+    marker_cluster = MarkerCluster().add_to(m)
+
+    fig = folium.Figure(width=1920, height=1080)
+
+
+    for index, location_info in df2.iterrows():
+
+        folium.Marker(
+            location=(location_info['latitude'], location_info['longitude']),
+            icon=folium.Icon(color=location_info['rating_color'])).add_to(marker_cluster)
+        
+    folium_static(m,width=1024,height=600)
